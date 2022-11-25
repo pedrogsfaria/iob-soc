@@ -39,8 +39,12 @@ int compare_str(char *str1, char *str2, int str_size) {
     return 0;
 }
 
-int main()
-{
+int main() {
+
+  /* ******************* Init section ******************* */
+  
+  /* ******************* Init section ******************* */
+  
   //init uart
   uart_init(UART_BASE,FREQ/BAUD);
 
@@ -67,9 +71,34 @@ int main()
   } else {
       printf("SUCCESS: Send and received file match!\n");
   }
-
   free(sendfile);
   free(recvfile);
+  
+  
+  /* ******************* Lab 2 - Fibonacci ******************* */
+  printf("Lab 2 - Fibonacci Sequence:\n");
+  
+  uint32_t f, f0 = 0;
+  uint32_t f1 = 1;
+  
+  // F0
+  printf("%d\n", f0);
+  
+  // F1
+  printf("%d\n", f1);
+  
+  // Fibonacci cycle
+  for(int n = 2; n < 47; n++) {
 
+    f = f0 + f1;	// Fn = F(n-1) + F(n-2)
+    f0 = f1;		// F(n-1)
+    f1 = f;	       	// F(n-2)
+
+    printf("%d\n", f);    
+	  
+  }
+    
+  /* ******************* End section ******************* */
   uart_finish();
+  
 }

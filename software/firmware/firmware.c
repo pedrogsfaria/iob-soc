@@ -1,6 +1,7 @@
 #include "system.h"
 #include "periphs.h"
 #include "iob-uart.h"
+#include "iob-gpio.h"
 #include "printf.h"
 
 char *send_string = "Sending this string as a file to console.\n"
@@ -41,15 +42,12 @@ int compare_str(char *str1, char *str2, int str_size) {
 
 int main() {
 
-  /* ******************* Init section ******************* */
-  
-  /* ******************* Init section ******************* */
-  
+  /* ******************* Init section ******************* */ 
   //init uart
   uart_init(UART_BASE,FREQ/BAUD);
 
   //test puts
-  uart_puts("\n\n\nHello world!\n\n\n");
+  /*uart_puts("\n\n\nHello world!\n\n\n");
 
   //test printf with floats 
   printf("Value of Pi = %f\n\n", 3.1415);
@@ -72,11 +70,11 @@ int main() {
       printf("SUCCESS: Send and received file match!\n");
   }
   free(sendfile);
-  free(recvfile);
+  free(recvfile);*/
   
   
   /* ******************* Lab 2 - Fibonacci ******************* */
-  printf("Lab 2 - Fibonacci Sequence:\n");
+  /*printf("Lab 2 - Fibonacci Sequence:\n");
   
   uint32_t f, f0 = 0;
   uint32_t f1 = 1;
@@ -96,7 +94,28 @@ int main() {
 
     printf("%d\n", f);    
 	  
+    }*/
+
+  /* ******************* Lab 3 - GPIO ******************* */
+  printf("\n\nLab 3 - GPIO:\n\n");
+  uint32_t g_input = 0;
+
+  // Submodule init
+  gpio_init(GPIO_BASE);
+  gpio_set_output_enable(0x06);  // Set output pin gpio[1] and gpio[2] for LED 1 and 2
+
+  printf("LED 1 ON\n\n");
+  gpio_set(0x02);                // Turn LED 1 ON
+    
+  printf("Waiting for switch\n");  
+  while(!(g_input & 0x01)) {
+    g_input = gpio_get();
   }
+
+  printf("Switch ON: LED 1 OFF and LED 2 ON\n");
+  gpio_set(0x04);                // Turn LED 1 OFF an LED 2 ON
+  
+  printf("\n\n");
     
   /* ******************* End section ******************* */
   uart_finish();

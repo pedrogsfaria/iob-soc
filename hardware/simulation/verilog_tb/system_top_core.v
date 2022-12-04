@@ -29,7 +29,7 @@ module system_top
    /////////////////////////////////////////////
    // TEST PROCEDURE
    //
-   initial begin
+   initial begin    
 
 `ifdef VCD
       $dumpfile("system.vcd");
@@ -90,6 +90,9 @@ module system_top
       );   
 `endif
 
+   //assign #10 gpio_input = 31'h0;       // Reset GPIOs input value   
+   assign #800000 gpio_input = 31'h01;  // Enable switch after 800 us
+  
    
    //finish simulation on trap
    /* always @(posedge trap) begin

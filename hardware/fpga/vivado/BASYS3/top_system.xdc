@@ -31,6 +31,17 @@ create_clock -period 10.000 [get_ports clk]
 
 ## USB-UART Interface
 set_property PACKAGE_PIN B18 [get_ports uart_rxd]
-set_property IOSTANDARD LVCMOS33 [get_ports uart_rxd]
+  set_property IOSTANDARD LVCMOS33 [get_ports uart_rxd]
 set_property PACKAGE_PIN A18 [get_ports uart_txd]
-set_property IOSTANDARD LVCMOS33 [get_ports uart_txd]
+  set_property IOSTANDARD LVCMOS33 [get_ports uart_txd]
+
+## Switches Interface
+set_property PACKAGE_PIN V17 [get_ports {sw[gpio[0]]}]
+  set_property IOSTANDARD LVCMOS33 [get_ports {gpio[0]}]
+
+## Leds Interface
+set_property PACKAGE_PIN U16 [get_ports {gpio[1]}]
+  set_property IOSTANDARD LVCMOS33 [get_ports {gpio[1]}]
+set_property PACKAGE_PIN E19 [get_ports {gpio[2]}]
+  set_property IOSTANDARD LVCMOS33 [get_ports {gpio[2]}]
+  

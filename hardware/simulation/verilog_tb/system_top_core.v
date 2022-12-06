@@ -88,12 +88,23 @@ module system_top
       .clk(clk),
       .rst(rst)
       );   
-`endif
+`endif //  `ifdef USE_DDR
 
-   //assign #10 gpio_input = 31'h0;       // Reset GPIOs input value   
-   assign #800000 gpio_input = 31'h01;  // Enable switch after 800 us
-  
+   ///////////////////////
+   // GPIO submdule test
    
+   reg [32-1:0] gpio_input_test = 0;      // Init temporary variable   
+   assign gpio_input = gpio_input_test;   // Assign variable to wire to update 
+
+   // Procedure
+   initial begin
+
+      gpio_input_test = 0;                // Reset            
+
+      #100 gpio_input_test = 1;           // Assert input value after 100xclock      
+
+   end
+  
    //finish simulation on trap
    /* always @(posedge trap) begin
     #10 $display("Found CPU trap condition");
@@ -119,6 +130,6 @@ module system_top
     #10 $display("Found CPU memory condition at %f : %x : %x", $time, sram_daddr, sram_dwdata );
     //$finish;
       end
-    */
+    */   
 
 endmodule

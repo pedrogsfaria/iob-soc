@@ -36,7 +36,7 @@ set_property PACKAGE_PIN A18 [get_ports uart_txd]
   set_property IOSTANDARD LVCMOS33 [get_ports uart_txd]
 
 ## Switches Interface
-set_property PACKAGE_PIN V17 [get_ports {sw[gpio[0]]}]
+set_property PACKAGE_PIN V17 [get_ports {gpio[0]}]
   set_property IOSTANDARD LVCMOS33 [get_ports {gpio[0]}]
 
 ## Leds Interface

@@ -12,7 +12,7 @@ module top_system(
 		  //gpio
 		  input gpio_input,		  
 		  output [1:0] gpio_output,
-		  output led
+		  output t_led
 		  
 		  );
 
@@ -20,9 +20,11 @@ module top_system(
    // RESET MANAGEMENT
    //
 
-   //system reset
+   //assign gpio_input = {31'b0,sw};
+   //devise method to slice output   
+   assign t_led= 1;     
 
-   assign led= 1;   
+   //system reset     
 
    wire                         sys_rst;
 

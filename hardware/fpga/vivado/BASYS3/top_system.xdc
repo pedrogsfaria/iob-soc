@@ -45,6 +45,6 @@ set_property PACKAGE_PIN U16 [get_ports {gpio_output[0]}]
 set_property PACKAGE_PIN E19 [get_ports {gpio_output[1]}]
   set_property IOSTANDARD LVCMOS33 [get_ports {gpio_output[1]}]
 
-set_property PACKAGE_PIN U19 [get_ports {led}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {led}]
+set_property PACKAGE_PIN U19 [get_ports {t_led}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {t_led}]
   

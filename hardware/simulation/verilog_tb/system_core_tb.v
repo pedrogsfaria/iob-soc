@@ -31,11 +31,10 @@ module system_tb;
   wire [`DATA_W-1:0]     uart_rdata;
   wire                   uart_ready;
 
+  //tester gpio
   reg [`GPIO_INPUT_W-1:0] gpio_input;   
   wire [`GPIO_OUTPUT_W-1:0] gpio_output;
-   
-
-   
+     
 
   //iterator
   integer                i = 0, n = 0;
@@ -130,7 +129,7 @@ system_top system_top
    .gpio_output (gpio_output)
    );
 
- ///////////////////////
+   ///////////////////////
    // GPIO submdule test
    
    reg [32-1:0] gpio_input_test = 0;      // Init temporary variable   
@@ -141,7 +140,7 @@ system_top system_top
 
       gpio_input_test = 0;                // Reset            
 
-      //#100 gpio_input_test = 1;           // Assert input value after 100xclock      
+      #100 gpio_input_test = 1;           // Assert input value after 100xclock      
 
    end
 

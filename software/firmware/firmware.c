@@ -102,10 +102,10 @@ int main() {
 
   // Submodule init
   gpio_init(GPIO_BASE);
-  gpio_set_output_enable(0x06);  // Set output pin gpio[1] and gpio[2] for LED 1 and 2
+  gpio_set_output_enable(0x03);  // Set output pin gpio[1] and gpio[2] for LED 1 and 2
 
   printf("LED 1 ON\n\n");
-  gpio_set(0x02);                // Turn LED 1 ON
+  gpio_set(0x01);                // Turn LED 1 ON
     
   printf("Waiting for switch\n");  
   while(!(g_input & 0x01)) {
@@ -113,7 +113,7 @@ int main() {
   }
 
   printf("Switch ON: LED 1 OFF and LED 2 ON\n");
-  gpio_set(0x04);                // Turn LED 1 OFF an LED 2 ON
+  gpio_set(0x02);                // Turn LED 1 OFF an LED 2 ON
   
   printf("\n\n");
     

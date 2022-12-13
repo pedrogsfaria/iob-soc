@@ -7,15 +7,19 @@
 
 module system_top 
   (
-   output                             trap,
+   output 			      trap,
    //tester uart
-   input                              uart_valid,
+   input 			      uart_valid,
    input [`iob_uart_swreg_ADDR_W-1:0] uart_addr,
-   input [`DATA_W-1:0]                uart_wdata,
-   input [3:0]                        uart_wstrb,
-   output [`DATA_W-1:0]               uart_rdata,
-   output                             uart_ready,
-`include "iob_gen_if.vh"
+   input [`DATA_W-1:0] 		      uart_wdata,
+   input [3:0] 			      uart_wstrb,
+   output [`DATA_W-1:0] 	      uart_rdata,
+   output 			      uart_ready, 
+
+   //tester gpio
+   input [`GPIO_INPUT_W-1:0] 	      gpio_input,
+   output [`GPIO_OUTPUT_W-1:0] 	      gpio_output,
+				      `include "iob_gen_if.vh"
    );
  
    localparam AXI_ID_W  = 4;
@@ -90,20 +94,7 @@ module system_top
       );   
 `endif //  `ifdef USE_DDR
 
-   ///////////////////////
-   // GPIO submdule test
    
-   reg [32-1:0] gpio_input_test = 0;      // Init temporary variable   
-   assign gpio_input = gpio_input_test;   // Assign variable to wire to update 
-
-   // Procedure
-   initial begin
-
-      gpio_input_test = 0;                // Reset            
-
-      #100 gpio_input_test = 1;           // Assert input value after 100xclock      
-
-   end
   
    //finish simulation on trap
    /* always @(posedge trap) begin

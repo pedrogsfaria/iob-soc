@@ -31,6 +31,12 @@ module system_tb;
   wire [`DATA_W-1:0]     uart_rdata;
   wire                   uart_ready;
 
+  reg [`GPIO_INPUT_W-1:0] gpio_input;   
+  wire [`GPIO_OUTPUT_W-1:0] gpio_output;
+   
+
+   
+
   //iterator
   integer                i = 0, n = 0;
   integer                error, n_byte = 0;
@@ -118,8 +124,26 @@ system_top system_top
    .uart_wdata (uart_wdata),
    .uart_wstrb (uart_wstrb),
    .uart_rdata (uart_rdata),
-   .uart_ready (uart_ready)
+   .uart_ready (uart_ready),
+
+   .gpio_input (gpio_input),
+   .gpio_output (gpio_output)
    );
+
+ ///////////////////////
+   // GPIO submdule test
+   
+   reg [32-1:0] gpio_input_test = 0;      // Init temporary variable   
+   assign gpio_input = gpio_input_test;   // Assign variable to wire to update 
+
+   // Procedure
+   initial begin
+
+      gpio_input_test = 0;                // Reset            
+
+      //#100 gpio_input_test = 1;           // Assert input value after 100xclock      
+
+   end
 
 
 `include "cpu_tasks.v"

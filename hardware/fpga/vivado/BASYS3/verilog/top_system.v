@@ -2,12 +2,18 @@
 `include "system.vh"
 
 module top_system(
-	          input         clk,
-	          input         reset,
+	          input  clk,
+	          input  reset,
 
 	          //uart
-	          output        uart_txd,
-	          input         uart_rxd
+	          output uart_txd,
+	          input  uart_rxd,
+
+		  //gpio
+		  input gpio_input,		  
+		  output [1:0] gpio_output,
+		  output led
+		  
 		  );
 
    //
@@ -15,6 +21,8 @@ module top_system(
    //
 
    //system reset
+
+   assign led= 1;   
 
    wire                         sys_rst;
 
@@ -46,7 +54,11 @@ module top_system(
       .uart_txd      (uart_txd),
       .uart_rxd      (uart_rxd),
       .uart_rts      (),
-      .uart_cts      (1'b1)
+      .uart_cts      (1'b1),
+
+      //GPIO
+      .gpio_input (gpio_input),
+      .gpio_output (gpio_output)      
       );
 
 endmodule
